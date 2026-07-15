@@ -1,0 +1,64 @@
+services:
+  db:
+    image: postgres:16.9-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [private]
+
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY}
+      MQTT_HOST: ${MQTT_HOST}
+      MQTT_PORT: ${MQTT_PORT:-8883}
+      MQTT_USERNAME: ${MQTT_BACKEND_USERNAME}
+      MQTT_PASSWORD: ${MQTT_BACKEND_PASSWORD}
+      MQTT_CA_PATH: /run/secrets/mqtt_ca
+    secrets: [mqtt_ca]
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [private]
+
+  mqtt-worker:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    command: ["python", "-m", "smartagri.worker_entrypoint"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      MQTT_HOST: ${MQTT_HOST}
+      MQTT_PORT: ${MQTT_PORT:-8883}
+      MQTT_USERNAME: ${MQTT_BACKEND_USERNAME}
+      MQTT_PASSWORD: ${MQTT_BACKEND_PASSWORD}
+      MQTT_CA_PATH: /run/secrets/mqtt_ca
+    secrets: [mqtt_ca]
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [private]
+
+networks:
+  private:
+
+volumes:
+  postgres_data:
+
+secrets:
+  mqtt_ca:
+    file: ${MQTT_CA_FILE}

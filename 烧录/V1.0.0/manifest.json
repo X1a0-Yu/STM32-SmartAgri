@@ -1,0 +1,37 @@
+{
+  "product": "SmartAgri",
+  "version": "1.0.0",
+  "codename": "V1.0 Baseline",
+  "release_date": "2026-07-14",
+  "mcu": "STM32F103C8T6",
+  "flash_base": "0x08000000",
+  "host_serial": {
+    "peripheral": "USART1",
+    "pins": "PA9/PA10 via CH340",
+    "baud": 19200,
+    "format": "8N1"
+  },
+  "firmware": {
+    "hex": "SmartAgri_STM32_V1.0.0.hex",
+    "sha256": "6f0acf66f7e7ff58d0e50f3d1624515441eca75cda5ffef4041303b52a48a6de",
+    "size_bytes": 40040
+  },
+  "capabilities": [
+    "DHT11 temperature/humidity",
+    "ADC soil/air/light sensing",
+    "Relay pump/fan/light control",
+    "Passive buzzer alarm",
+    "OLED status display",
+    "Two-button threshold editing",
+    "USB command protocol GET/SET/CTRL",
+    "Volatile actuator overrides with TTL"
+  ],
+  "known_issues": [
+    "Passive buzzer driven as static GPIO only produces click, not tone",
+    "OLED fully cleared between 250 ms refreshes, causing visible flicker",
+    "No Ra-02 LoRa support",
+    "No ESP-01S WiFi support",
+    "FastAPI dashboard only, not yet Flask"
+  ],
+  "rollback_safe": true
+}

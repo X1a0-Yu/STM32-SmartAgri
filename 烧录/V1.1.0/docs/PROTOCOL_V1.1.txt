@@ -1,0 +1,23 @@
+SmartAgri V1.1 Host Protocol
+=============================
+Serial: USART1 PA9/PA10 via CH340, 19200 8N1, ASCII CRLF.
+
+Existing commands:
+GET,<id>,STATE
+GET,<id>,INFO
+SET,<id>,TMIN=..,TMAX=..,HMIN=..,HMAX=..,AIRMAX=..,LMIN=..,SMIN=..
+CTRL,<id>,PUMP=AUTO|ON|OFF,FAN=...,LAMP=...,BEEP=...,TTL=..
+
+Wireless commands:
+LORA,<id>,POWER,ON=0|1
+LORA,<id>,PING
+WIFI,<id>,POWER,ON=0|1
+
+Responses:
+ACK,<id>,...
+ERR,<id>,<code>,...
+
+Telemetry adds:
+FWMAJ,FWMIN,FWPATCH,PROTO
+WSTATE,WRSSI,WERR,WTXOK,WTXFAIL
+LSTATE,LFREQ,LRSSI,LSNR10,LERR,LTX,LRX

@@ -1,0 +1,61 @@
+#ifndef BOARD_CONFIG_H
+#define BOARD_CONFIG_H
+
+#include <REG52.H>
+#include "common.h"
+
+#define FOSC_HZ 11059200UL
+#define UART_BAUD 9600
+
+#define KEY_ACTIVE_LEVEL 0
+#define LED_ACTIVE_LEVEL 0
+#define RELAY_ACTIVE_LEVEL 0
+#define BUZZER_ACTIVE_LEVEL 0
+
+#define DEFAULT_TEMP_MIN 18
+#define DEFAULT_TEMP_MAX 32
+#define DEFAULT_HUMI_MIN 40
+#define DEFAULT_HUMI_MAX 80
+#define DEFAULT_AIR_QUALITY_MAX 600
+#define DEFAULT_LIGHT_MIN 300
+#define DEFAULT_SOIL_MIN 350
+
+#define TEMP_MIN_LIMIT (-20)
+#define TEMP_MAX_LIMIT 80
+#define HUMI_MIN_LIMIT 0
+#define HUMI_MAX_LIMIT 100
+#define ADC_MIN_LIMIT 0
+#define ADC_MAX_LIMIT 1023
+
+#define SENSOR_TASK_PERIOD_MS 2000U
+#define DISPLAY_TASK_PERIOD_MS 300U
+#define SERIAL_TASK_PERIOD_MS 2000U
+#define KEY_TASK_PERIOD_MS 20U
+
+sbit PIN_DHT11 = P1^0;
+
+sbit PIN_ADC_CS = P1^1;
+sbit PIN_ADC_CLK = P1^2;
+sbit PIN_ADC_DIO = P1^3;
+
+sbit PIN_DISPLAY_RS = P0^0;
+sbit PIN_DISPLAY_RW = P0^1;
+sbit PIN_DISPLAY_EN = P0^2;
+#define DISPLAY_DATA_PORT P2
+
+sbit PIN_KEY_MODE = P3^2;
+sbit PIN_KEY_SELECT = P3^3;
+sbit PIN_KEY_UP = P3^4;
+sbit PIN_KEY_DOWN = P3^5;
+
+sbit PIN_LED1 = P2^0;
+sbit PIN_LED2 = P2^1;
+sbit PIN_LED3 = P2^2;
+sbit PIN_LED4 = P2^3;
+
+sbit PIN_RELAY_PUMP = P2^4;
+sbit PIN_RELAY_FAN = P2^5;
+sbit PIN_RELAY_LIGHT = P2^6;
+sbit PIN_BUZZER = P2^7;
+
+#endif

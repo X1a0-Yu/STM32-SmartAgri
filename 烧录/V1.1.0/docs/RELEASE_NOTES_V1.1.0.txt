@@ -1,0 +1,30 @@
+SmartAgri V1.1.0 Release Notes
+===============================
+
+New features
+- Ra-02 / SX1278 LoRa 433 MHz SPI driver with polling-based TX/RX.
+- ESP-01S USART2 AT modem service and HTTP telemetry upload.
+- Flask 3.1 backend replacing FastAPI.
+- Server-Sent Events real-time browser updates.
+- WiFi and LoRa live status panels.
+- Version/protocol metadata in serial telemetry.
+
+Fixes
+- Passive buzzer driven by TIM3 at 350 Hz instead of static GPIO.
+- OLED rendered to a RAM framebuffer and only changed pages are sent.
+- Host serial fixed at USART1 PA9/PA10, 19200 8N1.
+- Frontend responsive layouts for phone, tablet and desktop.
+
+Hardware constraints
+- Ra-02 DIO pins are not wired; IRQ flags are polled over SPI.
+- Do not transmit without the correct 410-525 MHz antenna fitted.
+- ESP-01S must contain compatible AT firmware.
+- WiFi credentials are RAM-only and cleared by MCU reset.
+
+Validation
+- ARMCC clean build: successful.
+- Flash code: 17,640 bytes.
+- Static RAM / ZI: 5,800 bytes.
+- Python tests: 11 passed.
+- Flask health, system, homepage and SSE snapshot smoke tests: passed.
+- Hardware LoRa/WiFi/radio/buzzer/OLED validation remains required on the physical board.

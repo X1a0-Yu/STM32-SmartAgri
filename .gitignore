@@ -1,0 +1,21 @@
+# Python runtime and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.sqlite3
+.env
+
+# Generated STM32/Keil build outputs
+ObjectsSTM32/
+*.d
+*.axf
+*.map
+*.lst
+*.o
+*.crf
+*.dep
+
+# Local runtime state
+/dashboard/data/
+/dashboard/deploy/compose.rendered.yml

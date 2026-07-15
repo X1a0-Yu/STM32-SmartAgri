@@ -1,0 +1,61 @@
+{
+  "product": "SmartAgri",
+  "version": "1.1.0",
+  "protocol": 2,
+  "mcu": "STM32F103C8T6",
+  "flash_base": "0x08000000",
+  "host_serial": "USART1 PA9/PA10 19200 8N1",
+  "lora_default": "433 MHz, BW125, SF9, CR4/5, +10dBm",
+  "wifi": "ESP-01S AT over USART2, HTTP POST /api/v1/ingest/telemetry",
+  "firmware_size_bytes": 54522,
+  "toolchain": "Keil ARMCC 5.06 (build 750)",
+  "tests": {
+    "python": 11,
+    "flask_smoke": true,
+    "sse_smoke": true,
+    "hardware_pending": [
+      "buzzer-350Hz",
+      "oled-no-flicker",
+      "Ra-02-RF",
+      "ESP-01S-AT-wifi",
+      "relay-wiring"
+    ]
+  },
+  "files": [
+    {
+      "path": "dashboard/SmartAgri_Flask_Dashboard_V1.1.0.zip",
+      "size": 63159,
+      "sha256": "95a17d1f608dfa6e3153269fc2c5424bf1bd434c9d4172a869d6be350c06a06d"
+    },
+    {
+      "path": "docs/PROTOCOL_V1.1.txt",
+      "size": 533,
+      "sha256": "7df4734d2e8853c8dfd5a21af373e691d9f4a84bac9433300dd44f3333631b39"
+    },
+    {
+      "path": "docs/README_FLASH.txt",
+      "size": 598,
+      "sha256": "788caf2e8da32ed2842ddf7df2244f3ca1f3d6f3b12074e437e5af9c5e0ec107"
+    },
+    {
+      "path": "docs/RELEASE_NOTES_V1.1.0.txt",
+      "size": 1181,
+      "sha256": "4857b73e3e5c739494423ca648bbafaa4917af17e176c1838b7de0493af9cf44"
+    },
+    {
+      "path": "firmware/SmartAgri_STM32_V1.1.0.hex",
+      "size": 54522,
+      "sha256": "3174230f4d5c75c817b24cba822422c8cc3761ff9e7bfb562def007a87eb26cc"
+    },
+    {
+      "path": "firmware/SmartAgri_STM32_V1.1.0.map",
+      "size": 29263,
+      "sha256": "873db17398aceef8c5132889e6d6a9445cbb12e7f4a33e7e5b31f5904cfd67ae"
+    },
+    {
+      "path": "source/SmartAgri_Source_V1.1.0.zip",
+      "size": 29539,
+      "sha256": "f2a1c976ab622beaa148d690c4eb6fc9da31efee828fc6ba05f94f8ebadafa28"
+    }
+  ]
+}
