@@ -27,8 +27,9 @@ services:
       MQTT_PORT: ${MQTT_PORT:-8883}
       MQTT_USERNAME: ${MQTT_BACKEND_USERNAME}
       MQTT_PASSWORD: ${MQTT_BACKEND_PASSWORD}
-      MQTT_CA_PATH: /run/secrets/mqtt_ca
-    secrets: [mqtt_ca]
+      MQTT_CA_PATH: /run/certs/emqx-ca.crt
+    volumes:
+      - ../secrets/emqx-ca.crt:/run/certs/emqx-ca.crt:ro
     depends_on:
       db:
         condition: service_healthy
@@ -46,8 +47,9 @@ services:
       MQTT_PORT: ${MQTT_PORT:-8883}
       MQTT_USERNAME: ${MQTT_BACKEND_USERNAME}
       MQTT_PASSWORD: ${MQTT_BACKEND_PASSWORD}
-      MQTT_CA_PATH: /run/secrets/mqtt_ca
-    secrets: [mqtt_ca]
+      MQTT_CA_PATH: /run/certs/emqx-ca.crt
+    volumes:
+      - ../secrets/emqx-ca.crt:/run/certs/emqx-ca.crt:ro
     depends_on:
       db:
         condition: service_healthy
@@ -58,7 +60,3 @@ networks:
 
 volumes:
   postgres_data:
-
-secrets:
-  mqtt_ca:
-    file: ${MQTT_CA_FILE}
